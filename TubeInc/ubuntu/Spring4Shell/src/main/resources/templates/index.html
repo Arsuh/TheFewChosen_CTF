@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <title>Tube Inc.</title>
+</head>
+<body>
+  <script>
+    $(document).ready(function () {
+      alert('Important!\nDue to the recent discovery of a major vulnerability of the used framework, this platform is now deprecated. It remains available only for backward compatibility reasons.\n\nDO NOT USE THIS PLATFORM IN PRODUCTION!');
+    });
+  </script>
+
+  <div id="body-title">
+    <h1>Tube Inc. product presentation page</h1>
+  </div>
+
+  <div id="carousel-wrapper">
+    <div id="menu">
+      <div id="current-option">
+        <span id="current-option-text1" data-previous-text="" data-next-text=""></span>
+        <span id="current-option-text2" data-previous-text="" data-next-text=""></span>
+      </div>
+      <button id="previous-option"></button>
+      <button id="next-option"></button>
+
+    </div>
+    <div id="image"></div>
+  </div>
+
+  <script>
+    const text1_options = [
+      "Acrylic tubes",
+      "Precision made shapes",
+      "The best storage solutions",
+      "Great insulation"
+    ];
+    const text2_options = [
+      "Amazing colors",
+      "Every shape imaginable",
+      "That's really satisfying",
+      "Warm and cozy"
+    ];
+    const color_options = ["rgba(82,197,217,0.79)", "#rgba(82,197,217,0.79)", "#rgba(82,197,217,0.79)", "#rgba(82,197,217,0.79)"];
+    const image_options = [
+      "images/acrylic_tubes.jpeg",
+      "images/precision_tubes.jpeg",
+      "images/tubes_in_storage.jpeg",
+      "images/insulation.jpeg"
+    ];
+    var i = 0;
+    const currentOptionText1 = document.getElementById("current-option-text1");
+    const currentOptionText2 = document.getElementById("current-option-text2");
+    const currentOptionImage = document.getElementById("image");
+    const carousel = document.getElementById("carousel-wrapper");
+    const mainMenu = document.getElementById("menu");
+    const optionPrevious = document.getElementById("previous-option");
+    const optionNext = document.getElementById("next-option");
+
+    currentOptionText1.innerText = text1_options[i];
+    currentOptionText2.innerText = text2_options[i];
+    currentOptionImage.style.backgroundImage = "url(" + image_options[i] + ")";
+    mainMenu.style.background = color_options[i];
+
+    optionNext.onclick = function () {
+      i = i + 1;
+      i = i % text1_options.length;
+      currentOptionText1.dataset.nextText = text1_options[i];
+
+      currentOptionText2.dataset.nextText = text2_options[i];
+
+      mainMenu.style.background = color_options[i];
+      carousel.classList.add("anim-next");
+
+      setTimeout(() => {
+        currentOptionImage.style.backgroundImage = "url(" + image_options[i] + ")";
+      }, 455);
+
+      setTimeout(() => {
+        currentOptionText1.innerText = text1_options[i];
+        currentOptionText2.innerText = text2_options[i];
+        carousel.classList.remove("anim-next");
+      }, 650);
+    };
+
+    optionPrevious.onclick = function () {
+      if (i === 0) {
+        i = text1_options.length;
+      }
+      i = i - 1;
+      currentOptionText1.dataset.previousText = text1_options[i];
+
+      currentOptionText2.dataset.previousText = text2_options[i];
+
+      mainMenu.style.background = color_options[i];
+      carousel.classList.add("anim-previous");
+
+      setTimeout(() => {
+        currentOptionImage.style.backgroundImage = "url(" + image_options[i] + ")";
+      }, 455);
+
+      setTimeout(() => {
+        currentOptionText1.innerText = text1_options[i];
+        currentOptionText2.innerText = text2_options[i];
+        carousel.classList.remove("anim-previous");
+      }, 650);
+    };
+  </script>
+
+  <link rel="stylesheet" type="text/css" href="index_style.css" />
+
+  <!--
+    Important!
+    Due to the recent discovery of a major vulnerability of the used framework, this platform is now deprecated (more information at /info).
+    It remains available only for backward compatibility reasons.
+
+    DO NOT USE THIS PLATFORM IN PRODUCTION!
+  -->
+</body>
+</html>
