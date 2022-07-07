@@ -20,7 +20,7 @@ ARG TOMCAT_PATH=/usr/local/${TOMCAT}
 ARG WEBAPP_NAME=SpringBootApp
 ARG WEBAPP_PATH=/usr/local/${WEBAPP_NAME}
 
-ARG WEBSITE_DOMAIN=test
+ARG WEBSITE_DOMAIN=tube
 ARG SUBDOMAIN=legacy
 ARG WEBSITE_URL=${WEBSITE_DOMAIN}.com
 ARG HTML_PATH=/var/www/html
@@ -31,6 +31,9 @@ WORKDIR /etc/apache2/sites-available
 COPY ./web/config/${WEBSITE_DOMAIN}.conf .
 RUN a2ensite ${WEBSITE_DOMAIN}.conf
 RUN a2dissite 000-default.conf
+RUN a2enmod proxy
+RUN a2enmod proxy_http
+RUN a2enmod headers
 
 RUN rm -Rf ${HTML_PATH}
 COPY ./web/html ${HTML_PATH}
